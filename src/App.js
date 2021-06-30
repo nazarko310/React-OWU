@@ -5,7 +5,7 @@ function App() {
     let [postsList, setPostsList] = useState([]);
     useEffect(() => {
 
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch('https://jsonplaceholder.typicode.com/users')
             .then(value => value.json())
             .then(response => {
                 setPostsList(response)
@@ -15,6 +15,7 @@ function App() {
         <div>
             {
                 <Users items={postsList}/>
+
             }
         </div>
     )
