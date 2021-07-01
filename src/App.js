@@ -3,19 +3,17 @@ import {getUsers} from "./services/Api";
 import Users from "./components/users/Users";
 
 function App() {
-    let [user, setUser] = useState([]);
+    let [users, setUsers] = useState([]);
     useEffect(() => {
-        getUsers().then(({data}) => {
-            setUser(data)
+        getUsers().then((response) => {
+            setUsers(response.data)
         })
     }, [])
 
     return (
-        <div>
-            {
-                <Users items={user}/>
-            }
-        </div>
+        <div>{
+            <Users items={users}/>
+        }</div>
     )
 }
 
