@@ -1,27 +1,39 @@
 import {useEffect, useState} from "react";
-import {getPost, getPosts} from "./services/Api";
-import Posts from "./components/posts/Posts";
+import {getCommentsFromPosts, getPostsFromUser, getUsers} from "./services/Api";
+import Users from "./components/users/Users";
 import PostDetails from "./components/post-details/PostDetails";
+import CommentsDetails from "./components/comment-details/CommentsDetails";
 
 function App() {
+    let [usersList, setUserLis] = useState([]);
     let [postsList, setPostsList] = useState([]);
-    let [postDetails, setPostDetails] = useState(null);
-    useEffect(() => {
-        getPosts().then(response => setPostsList(response.data))
-    }, [])
+    let [commentsList, setCommentsList] = useState([]);
 
-    function selectPost(id) {
-        getPost(id).then(({data}) => {
-            // console.log(data)
-            setPostDetails(data);
+    useEffect(() => {
+        getUsers().then(response => setUserLis(response.data))
+    })
+
+    function showPosts(id) {
+        getPostsFromUser(id).then(({data}) => {
+            setPostsList(data)
+        })
+    }
+
+    function showComments(id) {
+        getCommentsFromPosts(id).then(({data}) => {
+            setCommentsList(data)
         })
     }
 
     return (
         <div>
-            <Posts items={postsList} selectPost={selectPost}/>
+            <Users items={usersList} showPosts={showPosts}/>
             {
-                postDetails && <PostDetails text={postDetails}/>
+                postsList && <PostDetails post={postsList} showComments={showComments}/>
+            }
+            <hr/>
+            {
+                commentsList && <CommentsDetails comments={commentsList}/>
             }
         </div>
     )
