@@ -1,10 +1,10 @@
 import User from "../user/User";
 
-export default function Users({items}) {
+export default function Users({items, selectUser}) {
     return (
         <div>
             {
-                items.map(value => <User item={value} key={value.id}/>)
+                items.map(value => <User item={value} key={value.id} selectUser={selectUser}/>)
             }
         </div>
     )

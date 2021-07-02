@@ -7,4 +7,5 @@ let axiosInstance = axios.create({
 const getUsers = () => axiosInstance();
 const getUser = (id) => axiosInstance('/' + id);
 
-export {getUser, getUsers}
+
+export {getUser, getUsers};

@@ -1,21 +1,33 @@
 import {useEffect, useState} from "react";
-import {getUsers} from "./services/Api";
+import {getUser, getUsers} from "./services/Api";
 import Users from "./components/users/Users";
+import UserDetails from "./components/user-details/UserDetails";
 
 function App() {
-    let [users, setUsers] = useState([]);
-    useEffect(() => {
-        getUsers().then((response) => {
-            setUsers(response.data)
-        })
-    }, [])
+   let [usersList, setUsersList] = useState([]);
+   let [userDetails, setUserDetails] = useState(null);
+   useEffect(() => {
+      getUsers().then(response => setUsersList(response.data));
+   }, [])
 
-    return (
-        <div>{
-            <Users items={users}/>
-        }</div>
-    )
+   function selectUser(id) {
+      getUser(id).then(({data}) => {
+         setUserDetails(data)
+      })
+   }
+
+   return (
+       <div>
+          <Users items={usersList} selectUser={selectUser}/>
+          {
+             userDetails && <UserDetails address={userDetails.address}/>
+          }
+       </div>
+
+   )
+
 }
+
 
 export default App;
 
