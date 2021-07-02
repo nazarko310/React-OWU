@@ -1,13 +1,12 @@
-export default function User({item: {name, email, id}, selectUser}) {
+export default function Post({item: {title, id}, selectPost}) {
     return (
         <div>
-            <h2>{name} - {email}</h2>
+            <h2>{title}</h2>
             <button onClick={() => {
-                selectUser(id);
+                selectPost(id)
             }
             }>Детальніше
             </button>
         </div>
     )
 }
-

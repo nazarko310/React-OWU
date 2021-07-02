@@ -1,33 +1,31 @@
 import {useEffect, useState} from "react";
-import {getUser, getUsers} from "./services/Api";
-import Users from "./components/users/Users";
-import UserDetails from "./components/user-details/UserDetails";
+import {getPost, getPosts} from "./services/Api";
+import Posts from "./components/posts/Posts";
+import PostDetails from "./components/post-details/PostDetails";
 
 function App() {
-   let [usersList, setUsersList] = useState([]);
-   let [userDetails, setUserDetails] = useState(null);
-   useEffect(() => {
-      getUsers().then(response => setUsersList(response.data));
-   }, [])
+    let [postsList, setPostsList] = useState([]);
+    let [postDetails, setPostDetails] = useState(null);
+    useEffect(() => {
+        getPosts().then(response => setPostsList(response.data))
+    }, [])
 
-   function selectUser(id) {
-      getUser(id).then(({data}) => {
-         setUserDetails(data)
-      })
-   }
+    function selectPost(id) {
+        getPost(id).then(({data}) => {
+            // console.log(data)
+            setPostDetails(data);
+        })
+    }
 
-   return (
-       <div>
-          <Users items={usersList} selectUser={selectUser}/>
-          {
-             userDetails && <UserDetails address={userDetails.address}/>
-          }
-       </div>
-
-   )
-
+    return (
+        <div>
+            <Posts items={postsList} selectPost={selectPost}/>
+            {
+                postDetails && <PostDetails text={postDetails}/>
+            }
+        </div>
+    )
 }
-
 
 export default App;
 
