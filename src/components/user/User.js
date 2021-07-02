@@ -16,7 +16,6 @@ export default function User({item: {name, username, email, phone, website}, add
             </div>
             <div>
                 <p>Місце роботи</p>
-                <p>Компанія: {name}</p>
                 <p>{catchPhrase}</p>
                 <p>{bs}</p>
             </div>
