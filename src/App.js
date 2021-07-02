@@ -1,40 +1,48 @@
+import './App.css'
 import {useEffect, useState} from "react";
-import {getCommentsFromPosts, getPostsFromUser, getUsers} from "./services/Api";
+import {getAlbumsFromUsers, getPhotosFromAlbums, getUsers} from "./services/Api";
 import Users from "./components/users/Users";
-import PostDetails from "./components/post-details/PostDetails";
-import CommentsDetails from "./components/comment-details/CommentsDetails";
+import AlbumsDetails from "./components/albums/AlbumsDetails";
+import PhotoDetails from "./components/photo/PhotoDetails";
 
 function App() {
-    let [usersList, setUserLis] = useState([]);
-    let [postsList, setPostsList] = useState([]);
-    let [commentsList, setCommentsList] = useState([]);
-
+    let [usersList, setUsersList] = useState([]);
+    let [albumsList, setAlbumsList] = useState([]);
+    let [photosList, setPhotosList] = useState([]);
     useEffect(() => {
-        getUsers().then(response => setUserLis(response.data))
-    })
+        getUsers().then(response => {
+            setUsersList(response.data)
+        })
+    }, [])
 
-    function showPosts(id) {
-        getPostsFromUser(id).then(({data}) => {
-            setPostsList(data)
+    function getAlbums(id) {
+        getAlbumsFromUsers(id).then(({data}) => {
+            setAlbumsList(data)
         })
     }
 
-    function showComments(id) {
-        getCommentsFromPosts(id).then(({data}) => {
-            setCommentsList(data)
+    function getPhoto(id) {
+        getPhotosFromAlbums(id).then(({data}) => {
+            setPhotosList(data)
+            console.log(data);
         })
     }
 
     return (
         <div>
-            <Users items={usersList} showPosts={showPosts}/>
-            {
-                postsList && <PostDetails post={postsList} showComments={showComments}/>
-            }
-            <hr/>
-            {
-                commentsList && <CommentsDetails comments={commentsList}/>
-            }
+            <div className="container">
+                <Users items={usersList} getAlbums={getAlbums}/>
+                <div>
+                    {
+                        albumsList && <AlbumsDetails albums={albumsList} getPhoto={getPhoto}/>
+                    }
+                </div>
+                <div>
+                    {
+                        photosList && <PhotoDetails photo={photosList}/>
+                    }
+                </div>
+            </div>
         </div>
     )
 }
