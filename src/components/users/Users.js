@@ -1,11 +1,17 @@
-import './Users.css'
+import {useEffect, useState} from "react";
+import {getUsers} from "../../services/Api";
 import User from "../user/User";
 
-export default function Users({items, getAlbums}) {
+export default function Users() {
+    let [usersList, setUsersList] = useState([]);
+    useEffect(() => {
+        getUsers().then(response => setUsersList(response.data))
+    }, [])
+
     return (
-        <div className='users__inner'>
+        <div>
             {
-                items.map(value => <User item={value} key={value.id} getAlbums={getAlbums}/>)
+                usersList && <User item={usersList}/>
             }
         </div>
     )

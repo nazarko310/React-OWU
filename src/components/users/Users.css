@@ -1,8 +1,0 @@
-.users__inner{
-    display: grid;
-    grid-template-columns: repeat(5, 340px);
-    grid-column-gap: 17px;
-    grid-row-gap: 30px;
-
-    margin: 20px 0 10px;
-}
