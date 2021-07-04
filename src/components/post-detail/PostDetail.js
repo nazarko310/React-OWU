@@ -1,7 +1,7 @@
 export default function PostDetail({item}) {
     return (
         <div>
-            {item.id} - {item.body}
+            {item.id} - {item.title}
         </div>
     )
 }
