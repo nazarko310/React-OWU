@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getPostsFromUsers} from "../../services/Api";
+import PostDetail from "../post-detail/PostDetail";
 
 export default function PostDetails({match: {params: {id}}}) {
     const [postDetails, setPostDetails] = useState([]);
@@ -16,7 +17,7 @@ export default function PostDetails({match: {params: {id}}}) {
                 postDetails.map(value =>
                     <div key={value.id}>
                         {
-                            value && <div>{value.id} - {value.body}</div>
+                            value && <PostDetail item={value}/>
                         }
                     </div>)
             }

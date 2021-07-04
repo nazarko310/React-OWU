@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getCommentsFromPosts} from "../../services/Api";
+import CommentDetail from "../comments-detail/CommentDetail";
 
 export default function CommentDetails({match: {params: {id}}}) {
     const [commentDetails, setCommentDetails] = useState([]);
@@ -13,7 +14,7 @@ export default function CommentDetails({match: {params: {id}}}) {
                 commentDetails.map(value =>
                     <div key={value.id}>
                         {
-                            value && <div>{value.id} - {value.body}</div>
+                            value &&<CommentDetail item={value}/>
                         }
                     </div>
                 )
