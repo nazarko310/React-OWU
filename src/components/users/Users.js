@@ -12,10 +12,12 @@ export default function Users({match: {url}}) {
     return (
         <div>
             {
-                usersList && <User item={usersList} url={url}/>
+                <User item={usersList} url={url}/>
+
             }
             <Switch>
-                <Route path={'/users/:id/posts'} component={AlbumsDetails}/>
+                <Route path={'/users/:id/albums'}/>
+
             </Switch>
         </div>
     )
