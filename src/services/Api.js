@@ -4,9 +4,9 @@ let axiosInstance = axios.create({
     baseURL: 'https://jsonplaceholder.typicode.com'
 });
 const getUsers = () => axiosInstance(`/users`)
-const getPostsFromUsers = (id) => axiosInstance(`/users/${id}/posts`)
-const getPosts = () => axiosInstance(`/posts`)
-const getCommentsFromPosts = (id) => axiosInstance(`/posts/${id}/comments`)
+const getAlbumsFromUser = (id) => axiosInstance(`/users/${id}/albums`)
+const getAlbums = () => axiosInstance(`/albums`)
+const getPhotoFromAlbums = (id) => axiosInstance(`/albums/${id}/photos`)
 
 
-export {getUsers, getPosts, getPostsFromUsers, getCommentsFromPosts};
+export {getUsers, getAlbums, getAlbumsFromUser, getPhotoFromAlbums};
