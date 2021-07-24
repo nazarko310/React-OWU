@@ -1,25 +1,21 @@
-import {Switch, Route} from "react-router-dom";
-
 import {useEffect, useState} from "react";
 import {getUsers} from "../../services/Api";
 import User from "../user/User";
-import AlbumsDetails from "../album-details/AlbumsDetails";
-
+import {Route} from "react-router-dom";
+import UserDetails from "../user_details/UserDetails";
 
 export default function Users({match: {url}}) {
-    const [usersList, setUsersList] = useState([]);
+    const [user, setUser] = useState([]);
     useEffect(() => {
-        getUsers().then(response => setUsersList(response.data))
+        getUsers().then(response => setUser(response.data))
     }, [])
+
     return (
         <div>
             {
-                usersList && <User item={usersList} url={url}/>
+                user.map(value => <User item={value} key={value.id} url={url}/>)
             }
-            <br/>
-            <Switch>
-                <Route path={'/users/:id/albums'} component={AlbumsDetails}/>
-            </Switch>
+            <Route path={'/users/:id'} component={UserDetails}/>
         </div>
     )
 }

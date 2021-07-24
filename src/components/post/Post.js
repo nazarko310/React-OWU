@@ -1,15 +1,17 @@
 import {Link} from "react-router-dom";
 
-export default function User({item, url}) {
+export default function Post({item, url}) {
     return (
         <div>
-            {item.name}__{item.username}
+            {item.id}. {item.title}
             <Link to={
                 {
                     pathname: `${url}/${item.id}`,
                     state: item
                 }
-            }>Details</Link>
+            }>PostDetails</Link>
+            <br/>
+
         </div>
     )
 }
