@@ -10,6 +10,7 @@ export default function User({item, url}) {
                     state: item
                 }
             }>Details</Link>
+            <Link to={`${url}/${item.id}/posts`}>PostsOfUser</Link>
         </div>
     )
 }
