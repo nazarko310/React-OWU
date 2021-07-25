@@ -10,6 +10,7 @@ export default function Post({item, url}) {
                     state: item
                 }
             }>PostDetails</Link>
+            <Link to={`${url}/${item.id}/comments`}>CommentsFromPost</Link>
             <br/>
 
         </div>
