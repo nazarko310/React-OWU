@@ -1,25 +1,27 @@
+import './Users.css'
 import {useEffect, useState} from "react";
-import {getUsers} from "../../services/Api";
+import {getUser} from "../../services/Api";
 import User from "../user/User";
+import UserDetails from "../user-details/UserDetails";
 import {Route} from "react-router-dom";
-import UserDetails from "../user_details/UserDetails";
-import PostsOfUser from "../posts-of-user/PostsOfUser";
+import AlbumsOfUser from "../albums-of-user/AlbumsOfUser";
 
 export default function Users({match: {url}}) {
     const [user, setUser] = useState([]);
     useEffect(() => {
-        getUsers().then(response => setUser(response.data))
+        getUser().then(response => setUser(response.data))
     }, [])
-
     return (
         <div>
-            {
-                user.map(value => <User item={value} key={value.id} url={url}/>)
-            }
-            <br/>
+            <div className='users'>
+
+                {
+                    user.map(value => <User item={value} url={url} key={value.id}/>)
+                }
+            </div>
             <Route exact path={'/users/:id'} component={UserDetails}/>
-            <br/>
-            <Route path={'/users/:id/posts'} component={PostsOfUser}/>
+            <Route path={'/users/:id/albums'} component={AlbumsOfUser}/>
+
         </div>
     )
 }
