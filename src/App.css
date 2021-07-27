@@ -3,16 +3,16 @@
     padding: 0;
 }
 
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
 .container {
-    max-width: 1770px;
-    margin: 0 auto;
+    max-width: 1170px;
     padding: 0 20px;
-
+    margin: 0 auto;
 }
-
-.menu {
-    display: flex;
-    column-gap: 30px;
-    margin: 5px 0 40px 0;
-}
-

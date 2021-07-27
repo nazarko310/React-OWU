@@ -1,0 +1,6 @@
+.movies__inner{
+    display: grid;
+    grid-template-columns: repeat(4, 24%);
+    grid-column-gap: 1%;
+    grid-row-gap: 30px;
+}

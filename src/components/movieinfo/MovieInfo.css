@@ -1,0 +1,11 @@
+.movie__block_inner {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    height: 20px;
+}
+
+.movie__block_inner > * {
+    text-transform: uppercase;
+}
+

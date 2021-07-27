@@ -1,13 +1,9 @@
 import axios from "axios";
 
 let axiosInstance = axios.create({
-    baseURL: 'https://jsonplaceholder.typicode.com'
+    baseURL: 'https://api.themoviedb.org/3/discover/movie?api_key=5a1a052b877422d51ab6cead862c74bf'
 });
 
-const getUser = () => axiosInstance('/users');
-const getAlbum = () => axiosInstance('/albums')
-const getPhotos = () => axiosInstance('/photos')
-const getAlbumsOfUser = (id) => axiosInstance(`/users/${id}/albums`)
-const getPhotosOfAlbum = (id) => axiosInstance(`/users/${id}/albums`)
+const getMovie = () => axiosInstance('');
 
-export {getUser, getAlbum, getAlbumsOfUser, getPhotosOfAlbum, getPhotos}
+export {getMovie}
